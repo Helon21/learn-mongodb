@@ -28,8 +28,23 @@ public class UserService {
         return userRepository.insert(obj);
     }
 
+    public User update(User obj) {
+        User newObj = userRepository.findById(obj.getId()).orElseThrow(() -> new ObjectNotFoundException("User not found to update"));
+        updateData(newObj, obj);
+        return userRepository.save(newObj);
+    }
+
+    public void delete(String id) {
+        userRepository.deleteById(id);
+    }
+
     public User fromDTO(UserDTO objDTO) {
         return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+    }
+
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
     }
 
 }
