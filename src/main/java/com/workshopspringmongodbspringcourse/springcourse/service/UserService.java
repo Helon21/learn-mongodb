@@ -2,6 +2,7 @@ package com.workshopspringmongodbspringcourse.springcourse.service;
 
 import com.workshopspringmongodbspringcourse.springcourse.domain.User;
 import com.workshopspringmongodbspringcourse.springcourse.repository.UserRepository;
+import com.workshopspringmongodbspringcourse.springcourse.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findById(String id) {
-        return userRepository.findById(id);
+    public User findById(String id) {
+        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
     }
 
 }
