@@ -1,5 +1,7 @@
 package com.workshopspringmongodbspringcourse.springcourse.domain;
 
+import com.workshopspringmongodbspringcourse.springcourse.dto.AuthorDTO;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -8,7 +10,7 @@ public class Post implements Serializable {
 
     private String id;
     private Date date;
-    private User author;
+    private AuthorDTO author;
     private String title;
     private String body;
 
@@ -16,7 +18,7 @@ public class Post implements Serializable {
 
     }
 
-    public Post(String id, Date date, User author, String title, String body) {
+    public Post(String id, Date date, AuthorDTO author, String title, String body) {
         this.id = id;
         this.date = date;
         this.author = author;
@@ -40,11 +42,11 @@ public class Post implements Serializable {
         this.date = date;
     }
 
-    public User getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
