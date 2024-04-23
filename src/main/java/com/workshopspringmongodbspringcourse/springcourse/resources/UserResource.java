@@ -1,5 +1,6 @@
 package com.workshopspringmongodbspringcourse.springcourse.resources;
 
+import com.workshopspringmongodbspringcourse.springcourse.domain.Post;
 import com.workshopspringmongodbspringcourse.springcourse.domain.User;
 import com.workshopspringmongodbspringcourse.springcourse.dto.UserDTO;
 import com.workshopspringmongodbspringcourse.springcourse.service.UserService;
@@ -48,9 +49,15 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping("/delete-user/{id}")
+    @DeleteMapping("/delete-user/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
